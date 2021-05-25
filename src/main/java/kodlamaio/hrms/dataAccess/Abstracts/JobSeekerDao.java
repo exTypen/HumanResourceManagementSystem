@@ -10,6 +10,6 @@ public interface JobSeekerDao extends JpaRepository<JobSeeker, Integer> {
     @Query("SELECT s FROM JobSeeker s WHERE s.email=?1")
     Optional<JobSeeker> findEmail(String email);
 
-    @Query("SELECT s FROM JobSeeker s WHERE s.identificationNumber=?1")
+    @Query("SELECT s FROM JobSeeker s WHERE s.nationalIdentity=?1")
     Optional<JobSeeker> findNationalIdentity(String nationalIdentity);
 }

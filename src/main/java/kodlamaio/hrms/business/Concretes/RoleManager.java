@@ -2,7 +2,7 @@ package kodlamaio.hrms.business.Concretes;
 
 import kodlamaio.hrms.business.Abstracts.RoleService;
 import kodlamaio.hrms.dataAccess.Abstracts.RoleDao;
-import kodlamaio.hrms.entities.concretes.Role;
+import kodlamaio.hrms.entities.concretes.JobPosition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +19,12 @@ public class RoleManager implements RoleService {
     }
 
     @Override
-    public List<Role> getAll() {
+    public List<JobPosition> getAll() {
         return roleDao.findAll();
     }
 
     @Override
-    public void add(Role role) {
+    public void add(JobPosition role) {
         roleDao.save(role);
     }
 }

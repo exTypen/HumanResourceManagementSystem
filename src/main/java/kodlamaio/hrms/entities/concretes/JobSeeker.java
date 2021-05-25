@@ -1,17 +1,18 @@
 package kodlamaio.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name="job_seeker")
-public class JobSeeker {
-    @Id
-    @GeneratedValue
-    @Column(name="id")
-    public int id;
+@PrimaryKeyJoinColumn(name = "id")
+@Table(name="job_seekers")
+@AllArgsConstructor
+@NoArgsConstructor
+public class JobSeeker extends User{
 
     @Column(name="name")
     public String name;
@@ -19,16 +20,9 @@ public class JobSeeker {
     @Column(name="surname")
     public String surname;
 
-    @Column(name="identification_number")
-    public String identificationNumber;
-
     @Column(name="birth_year")
-    public int birthYear;
+    private int birthYear;
 
-    @Column(name="email")
-    public String email;
-
-    @Column(name="password")
-    public String password;
-
+    @Column(name="national_identity")
+    private String nationalIdentity;
 }

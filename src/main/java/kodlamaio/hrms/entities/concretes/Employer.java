@@ -1,43 +1,23 @@
 package kodlamaio.hrms.entities.concretes;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity
 @Table(name="employers")
-public class Employer{
-    @Id
-    @GeneratedValue
-    @Column(name="id")
-    public int id;
+@PrimaryKeyJoinColumn(name = "id")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Employer extends User{
 
     @Column(name="company_name")
-    public String companyName;
-
+    private String companyName;
     @Column(name="web_site")
-    public String webSite;
-
-    @Column(name="email")
-    public String email;
-
+    private String webSite;
     @Column(name="phone_number")
-    public String phoneNumber;
-
-    @Column(name="password")
-    public String password;
-
-    public Employer() {
-
-    }
-
-    public Employer(int id, String companyName, String webSite, String email, String phoneNumber, String password) {
-        this.id = id;
-        this.companyName = companyName;
-        this.webSite = webSite;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.password = password;
-    }
+    private String phoneNumber;
 }

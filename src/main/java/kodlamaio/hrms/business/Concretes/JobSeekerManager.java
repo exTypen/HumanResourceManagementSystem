@@ -1,6 +1,10 @@
 package kodlamaio.hrms.business.Concretes;
 
 import kodlamaio.hrms.business.Abstracts.JobSeekerService;
+import kodlamaio.hrms.core.utilities.result.DataResult;
+import kodlamaio.hrms.core.utilities.result.Result;
+import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.result.SuccessResult;
 import kodlamaio.hrms.dataAccess.Abstracts.JobSeekerDao;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +23,19 @@ public class JobSeekerManager implements JobSeekerService {
     }
 
     @Override
-    public List<JobSeeker> getAll() {
-        return jobSeekerDao.findAll();
+    public DataResult<List<JobSeeker>> getAll() {
+        return new SuccessDataResult<List<JobSeeker>>(this.jobSeekerDao.findAll());
     }
 
     @Override
-    public boolean add(JobSeeker jobSeeker) {
-        if (checkEmailExist(jobSeeker.email)){
-            return false;
-        }
-        jobSeekerDao.save(jobSeeker);
-        return true;
+    public Result add(JobSeeker jobSeeker) {
+        this.jobSeekerDao.save(jobSeeker);
+        return new SuccessResult();
     }
 
-    private boolean checkEmailExist(String email){
-        var result = jobSeekerDao.findEmail(email).isPresent();
-        if (result){return true;}
-        return false;
+    @Override
+    public Result delete(JobSeeker jobSeeker) {
+        this.jobSeekerDao.delete(jobSeeker);
+        return new SuccessResult();
     }
 }
