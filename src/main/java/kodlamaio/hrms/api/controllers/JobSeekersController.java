@@ -7,6 +7,7 @@ import kodlamaio.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,7 @@ public class JobSeekersController {
     }
 
     @PostMapping("/add")
-    public Result add(@RequestBody JobSeeker jobSeeker){
+    public Result add(@Valid @RequestBody JobSeeker jobSeeker){
         return this.jobSeekerService.add(jobSeeker);
     }
 

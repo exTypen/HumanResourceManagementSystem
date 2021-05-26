@@ -1,10 +1,8 @@
 package kodlamaio.hrms.business.Concretes;
 
 import kodlamaio.hrms.business.Abstracts.UserService;
-import kodlamaio.hrms.core.utilities.result.DataResult;
-import kodlamaio.hrms.core.utilities.result.Result;
-import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
-import kodlamaio.hrms.core.utilities.result.SuccessResult;
+import kodlamaio.hrms.core.utilities.business.BusinessRules;
+import kodlamaio.hrms.core.utilities.result.*;
 import kodlamaio.hrms.dataAccess.Abstracts.UserDao;
 import kodlamaio.hrms.entities.concretes.User;
 import org.springframework.beans.factory.annotation.Autowired;
