@@ -25,6 +25,11 @@ public class CvsController {
         return cvService.getAll();
     }
 
+    @GetMapping("/getallbyjobseeker")
+    public DataResult<List<Cv>> getAllByJobSeeker(@RequestParam int id){
+        return cvService.getAllByJobSeeker(id);
+    }
+
     @PostMapping("/add")
     public Result add(@RequestBody Cv cv){
         return cvService.add(cv);

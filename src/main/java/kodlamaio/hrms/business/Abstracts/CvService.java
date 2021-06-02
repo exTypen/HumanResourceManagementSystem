@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface CvService {
     DataResult<List<Cv>> getAll();
+    DataResult<List<Cv>> getAllByJobSeeker(int id);
     Result add(Cv cv);
 }

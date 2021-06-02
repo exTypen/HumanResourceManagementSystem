@@ -28,6 +28,11 @@ public class CvManager implements CvService {
     }
 
     @Override
+    public DataResult<List<Cv>> getAllByJobSeeker(int id) {
+        return new SuccessDataResult<List<Cv>>(cvDao.findAllByJobSeekerId(id));
+    }
+
+    @Override
     public Result add(Cv cv) {
         cvDao.save(cv);
         return new SuccessResult();
