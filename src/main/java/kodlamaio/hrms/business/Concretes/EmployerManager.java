@@ -1,15 +1,14 @@
 package kodlamaio.hrms.business.Concretes;
 
 import kodlamaio.hrms.business.Abstracts.EmployerService;
-import kodlamaio.hrms.core.utilities.result.DataResult;
-import kodlamaio.hrms.core.utilities.result.Result;
-import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
-import kodlamaio.hrms.core.utilities.result.SuccessResult;
+import kodlamaio.hrms.core.utilities.business.BusinessRules;
+import kodlamaio.hrms.core.utilities.result.*;
 import kodlamaio.hrms.dataAccess.Abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concretes.Employer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -29,6 +28,10 @@ public class EmployerManager implements EmployerService {
 
     @Override
     public Result add(Employer employer) {
+        var result = BusinessRules.run(checkIsEmailTrue(employer));
+        if (!result.isSuccess()){
+            return result;
+        }
         this.employerDao.save(employer);
         return new SuccessResult();
     }
@@ -37,5 +40,13 @@ public class EmployerManager implements EmployerService {
     public Result delete(Employer employer) {
         this.employerDao.delete(employer);
         return new SuccessResult();
+    }
+
+    private Result checkIsEmailTrue(Employer employer){
+        var domain = employer.getEmail().split("@",2);
+        if (employer.getWebSite().equals(domain[1])){
+            return new SuccessResult();
+        }
+        return new ErrorResult("Email ile website uyuşmuyor.");
     }
 }

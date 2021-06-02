@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-@Entity
 @Data
+@Entity
+@Table(name = "programming_languages")
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="job_positions")
-public class JobPosition {
+public class ProgrammingLanguage {
     @Id
-    @Column(name="id")
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id;
 
     @NotBlank
-    @Column(name = "position")
-    private String position;
+    @Column(name = "name")
+    private String name;
 }
