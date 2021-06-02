@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,6 +23,11 @@ public class Experience {
     @Column(name = "company_name")
     @NotBlank
     private String companyName;
+
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name="cv_id")
+    private Cv cv;
 
     @NotNull
     @Column(name = "position_id")

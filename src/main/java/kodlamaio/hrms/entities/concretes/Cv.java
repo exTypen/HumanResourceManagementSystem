@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,21 +25,17 @@ public class Cv {
     @ManyToOne
     private JobSeeker jobSeeker;
 
-    @ManyToOne
-    @JoinColumn(name = "education_id")
-    private Education education;
+    @OneToMany(mappedBy = "cv")
+    private List<Education> educations;
 
-    @ManyToOne
-    @JoinColumn(name = "experience_id")
-    private Experience experience;
+    @OneToMany(mappedBy = "cv")
+    private List<Experience> experience;
 
-    @ManyToOne
-    @JoinColumn(name = "foreign_language_level_id")
-    private ForeignLanguageLevel foreignLanguageLevel;
+    @OneToMany(mappedBy = "cv")
+    private List<ForeignLanguageLevel> foreignLanguageLevel;
 
-    @ManyToOne
-    @JoinColumn(name = "programming_language_level_id")
-    private ProgrammingLanguageLevel programmingLanguageLevel;
+    @OneToMany(mappedBy = "cv")
+    private List<ProgrammingLanguageLevel> programmingLanguageLevel;
 
     @Column(name = "github_address")
     private String githubAddress;

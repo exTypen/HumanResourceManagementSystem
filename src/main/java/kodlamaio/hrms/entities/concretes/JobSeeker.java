@@ -21,6 +21,9 @@ public class JobSeeker extends User{
     @Column(name="name")
     public String name;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @NotBlank(message = "Soyisim alanı boş olamaz")
     @Column(name="surname")
     public String surname;

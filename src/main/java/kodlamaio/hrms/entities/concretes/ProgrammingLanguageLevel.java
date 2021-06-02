@@ -1,5 +1,6 @@
 package kodlamaio.hrms.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,9 +15,10 @@ public class ProgrammingLanguageLevel {
     @Column(name = "id")
     private int id;
 
-    @NotNull
-    @Column(name = "job_seeker_id")
-    private int jobSeekerId;
+    @JsonIgnore
+    @ManyToOne()
+    @JoinColumn(name="cv_id")
+    private Cv cv;
 
     @ManyToOne
     @JoinColumn(name = "programming_language_id")

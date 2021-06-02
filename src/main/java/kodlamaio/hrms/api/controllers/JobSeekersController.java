@@ -1,6 +1,7 @@
 package kodlamaio.hrms.api.controllers;
 
 import kodlamaio.hrms.business.Abstracts.JobSeekerService;
+import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.ErrorDataResult;
 import kodlamaio.hrms.entities.concretes.JobSeeker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,8 +10,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,4 +47,21 @@ public class JobSeekersController {
         ErrorDataResult<Object> errors = new ErrorDataResult<Object>(validationErrors, "Doğrulama hataları");
         return errors;
     }
+
+    @PostMapping("uploadImage")
+    public ResponseEntity<?> uploadImage(@RequestParam int candidateId, @RequestParam MultipartFile file){
+        DataResult result = null ;
+        try {
+            result = this.jobSeekerService.imageUpload(candidateId,file);
+        }
+        catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        if (!result.isSuccess()){
+            return ResponseEntity.badRequest().body(result);
+        }
+        return  ResponseEntity.ok(result);
+    }
+
 }
